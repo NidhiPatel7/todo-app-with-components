@@ -83,7 +83,7 @@ class App extends Component
           {/* ===todo ==== */}
           {
             this.state.todos.map((todo) => {
-              // console.log(todo);
+              //console.log(todo);
               var todoProps = {
                 ...todo,//... allow to copy list and items
                 key:todo.id,
