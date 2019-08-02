@@ -1,4 +1,5 @@
 // ===main consept=== => if you repeat something put in component otherwise code goes crazy
+//=>all method in main file app.js call method in particular file 
 
 // =====steps for new component====
 // 1)create new component for new form NewTodoForm.jsx
@@ -11,6 +12,26 @@
 // 6)same step with all components(todo component)
 
 
+
+// =====common steps ====
+//1)create object & add data use object in main constructor  this.state = {todos:[ in main app.js file
+//2)
+
+
+
+// =====steps for remove data=====
+// 1)do this steps in remove fun which is in main class  app.js
+//var todos = this.state.todos;//we store old list
+//     var filtered = todos.filter((todo) => {//we filter particular if
+//       return todo.id != id;
+//     });
+//     this.setState({todos:filtered});//we change the list
+// check in console log click app write in console log $r.removeTodo(1) here removeTodo=fun name 1 is id.
+//2)call fun(method )in todo list in html in map fun in app.js main file
+// removeTodo:this.removeTodo,
+// check in console log click app todo check fun
+// when we lick o cross icon we want to delete so we have to go NewTodoForm.js file in which icon have 
+// create onclick fun (handelTodoRemoveClick)in i tag and call that fun (handelTodoRemoveClick) after constructer 
 
 
 // so if we change app.js to app.jsx so we have to cahnge in index.js app.js to app.jsx
@@ -53,6 +74,7 @@ class App extends Component
   // ====event(method) for add data===
   addTodo = (data) =>
   {
+    //data that we want to add
       var newTodo = {
         id:Date.now(),
         ...data
@@ -61,12 +83,17 @@ class App extends Component
       // console.log(newTodo);
       //  var todos = [todos,...this.state.todos];
       // this.setState({todos});
-      var newList = [newTodo,...this.state.todos];
-      this.setState({todos:newList});
+      var newList = [newTodo,...this.state.todos];//we add new data in list
+      this.setState({todos:newList});//change data in main list
   }
   // ====event(method) for delete data===
   removeTodo = (id) =>
   {
+    var todos = this.state.todos;//we store old list
+    var filtered = todos.filter((todo) => {//we filter particular if
+      return todo.id != id;
+    });
+    this.setState({todos:filtered});//we change the list
     
   }
   // ====event(method) for edit data===
@@ -87,6 +114,7 @@ class App extends Component
               var todoProps = {
                 ...todo,//... allow to copy list and items
                 key:todo.id,
+                removeTodo:this.removeTodo,//for delete data
                 
 
               };
